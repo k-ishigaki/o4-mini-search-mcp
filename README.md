@@ -2,6 +2,12 @@
 
 An MCP (Model Context Protocol) server that provides web search capabilities using OpenAI's o4-mini model. The `o4-mini-search` tool accepts text queries and returns AI-powered search results.
 
+---
+
+> 🚀 **Forked from [yoshiko-pg/o3-search-mcp](https://github.com/yoshiko-pg/o3-search-mcp)**
+>
+> Switched from the original o3 model to o4-mini for lighter TPM usage.
+
 ## Installation
 
 ### Using npx (Recommended)
