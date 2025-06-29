@@ -1,32 +1,27 @@
-# o3-search-mcp
+# o4-mini-search-mcp
 
-An MCP (Model Context Protocol) server that provides web search capabilities using OpenAI's o3 model. The `o3-search` tool accepts text queries and returns AI-powered search results.
+An MCP (Model Context Protocol) server that provides web search capabilities using OpenAI's o4-mini model. The `o4-mini-search` tool accepts text queries and returns AI-powered search results.
 
 ## Installation
 
 ### Using npx (Recommended)
 
-Claude Code:
-
+```bash
+$ claude mcp add o4-mini -s user \
+    -e OPENAI_API_KEY=your-api-key \
+    -e SEARCH_CONTEXT_SIZE=medium \
+    -e REASONING_EFFORT=medium \
+    -- npx o4-mini-search-mcp
 ```
-$ claude mcp add o3 -s user \
-	-e OPENAI_API_KEY=your-api-key \
-	-e SEARCH_CONTEXT_SIZE=medium \
-	-e REASONING_EFFORT=medium \
-	-- npx o3-search-mcp
-```
-
-json:
 
 ```json
 {
   "mcpServers": {
-    "o3-search": {
+    "o4-mini-search": {
       "command": "npx",
-      "args": ["o3-search-mcp"],
+      "args": ["o4-mini-search-mcp"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
-        // Optional: low, medium, high (default: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium"
       }
@@ -35,43 +30,20 @@ json:
 }
 ```
 
-### Local Development Setup
+## Local Development Setup
 
-If you want to download and run the code locally:
-
-   ```bash
-   # setup
-   git clone git@github.com:yoshiko-pg/o3-search-mcp.git
-   cd o3-search-mcp
-   pnpm install
-   pnpm build
-   ```
-
-Claude Code:
-
-```
-$ claude mcp add o3 -s user \
-	-e OPENAI_API_KEY=your-api-key \
-	-e SEARCH_CONTEXT_SIZE=medium \
-	-e REASONING_EFFORT=medium \
-	-- node /path/to/o3-search-mcp/build/index.js
+```bash
+# setup
+git clone git@github.com:yoshiko-pg/o4-mini-search-mcp.git
+cd o4-mini-search-mcp
+pnpm install
+pnpm build
 ```
 
-json:
-
-```json
-{
-  "mcpServers": {
-    "o3-search": {
-      "command": "node",
-      "args": ["/path/to/o3-search-mcp/build/index.js"],
-      "env": {
-        "OPENAI_API_KEY": "your-api-key",
-        // Optional: low, medium, high (default: medium)
-        "SEARCH_CONTEXT_SIZE": "medium",
-        "REASONING_EFFORT": "medium"
-      }
-    }
-  }
-}
+```bash
+$ claude mcp add o4-mini -s user \
+    -e OPENAI_API_KEY=your-api-key \
+    -e SEARCH_CONTEXT_SIZE=medium \
+    -e REASONING_EFFORT=medium \
+    -- node /path/to/o4-mini-search-mcp/build/index.js
 ```

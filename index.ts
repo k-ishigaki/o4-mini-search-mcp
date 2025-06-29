@@ -6,7 +6,7 @@ import { z } from "zod";
 
 // Create server instance
 const server = new McpServer({
-  name: "o3-search-mcp",
+  name: "o4-mini-search-mcp",
   version: "0.0.1",
 });
 
@@ -16,30 +16,36 @@ const openai = new OpenAI({
 });
 
 // Configuration from environment variables
-const searchContextSize = (process.env.SEARCH_CONTEXT_SIZE || 'medium') as 'low' | 'medium' | 'high';
-const reasoningEffort = (process.env.REASONING_EFFORT || 'medium') as 'low' | 'medium' | 'high';
+const searchContextSize =
+  (process.env.SEARCH_CONTEXT_SIZE || 'medium') as 'low' | 'medium' | 'high';
+const reasoningEffort =
+  (process.env.REASONING_EFFORT || 'medium') as 'low' | 'medium' | 'high';
 
-// Define the o3-search tool
+// Define the o4-mini-search tool
 server.tool(
-  "o3-search",
-  `An AI agent with advanced web search capabilities. Useful for finding latest information and troubleshooting errors. Supports natural language queries.`,
-  { input: z.string().describe('Ask questions, search for information, or consult about complex problems in English.'), },
+  "o4-mini-search",
+  "An AI agent with advanced web search capabilities using OpenAI's o4-mini model.",
+  {
+    input: z.string().describe(
+      "Ask questions, search for information, or consult about complex problems in English."
+    ),
+  },
   async ({ input }) => {
     try {
       const response = await openai.responses.create({
-        model: 'o3',
+        model: "o4-mini",
         input,
-        tools: [{ type: 'web_search_preview', search_context_size: searchContextSize }],
-        tool_choice: 'auto',
+        tools: [{ type: "web_search_preview", search_context_size: searchContextSize }],
+        tool_choice: "auto",
         parallel_tool_calls: true,
         reasoning: { effort: reasoningEffort },
-      })
+      });
 
       return {
         content: [
           {
             type: "text",
-            text: response.output_text || "No response text available.",
+            text: response.output_text ?? "No response text available.",
           },
         ],
       };
@@ -49,7 +55,9 @@ server.tool(
         content: [
           {
             type: "text",
-            text: `Error: ${error instanceof Error ? error.message : "Unknown error occurred"}`,
+            text: `Error: ${
+              error instanceof Error ? error.message : "Unknown error occurred"
+            }`,
           },
         ],
       };
@@ -64,6 +72,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("Fatal error in main():", error);
+  console.error(error);
   process.exit(1);
 });
