@@ -34,7 +34,7 @@ $ claude mcp add o4-mini -s user \
 
 ```bash
 # setup
-git clone git@github.com:yoshiko-pg/o4-mini-search-mcp.git
+git clone git@github.com:k-ishigaki/o4-mini-search-mcp.git
 cd o4-mini-search-mcp
 pnpm install
 pnpm build

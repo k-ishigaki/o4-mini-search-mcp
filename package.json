@@ -11,9 +11,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yoshiko-pg/o4-mini-search-mcp.git"
+    "url": "git+https://github.com/k-ishigaki/o4-mini-search-mcp.git"
   },
-  "author": "@yoshiko-pg",
+  "author": "@k-ishigaki",
   "license": "MIT",
   "type": "module",
   "packageManager": "pnpm@10.10.0",
