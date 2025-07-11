@@ -11,8 +11,10 @@ const server = new McpServer({
 });
 
 // Initialize OpenAI client
+const openAIApiBase = process.env.OPENAI_API_BASE;
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
+  ...(openAIApiBase ? { baseURL: openAIApiBase } : {}),
 });
 
 // Configuration from environment variables

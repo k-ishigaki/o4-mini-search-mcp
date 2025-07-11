@@ -15,6 +15,7 @@ An MCP (Model Context Protocol) server that provides web search capabilities usi
 ```bash
 $ claude mcp add o4-mini -s user \
     -e OPENAI_API_KEY=your-api-key \
+    -e OPENAI_API_BASE=your-base-url-here \
     -e SEARCH_CONTEXT_SIZE=medium \
     -e REASONING_EFFORT=medium \
     -- npx o4-mini-search-mcp
@@ -28,6 +29,7 @@ $ claude mcp add o4-mini -s user \
       "args": ["o4-mini-search-mcp"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        "OPENAI_API_BASE": "your-base-url-here",
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium"
       }
@@ -49,6 +51,7 @@ pnpm build
 ```bash
 $ claude mcp add o4-mini -s user \
     -e OPENAI_API_KEY=your-api-key \
+    -e OPENAI_API_BASE=your-base-url-here \
     -e SEARCH_CONTEXT_SIZE=medium \
     -e REASONING_EFFORT=medium \
     -- node /path/to/o4-mini-search-mcp/build/index.js
